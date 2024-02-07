@@ -1,26 +1,34 @@
 from turtle import Turtle
-UP=90
-DOWN=270
-LEFT=180
-RIGHT=0
+
+STARTING_POSITIONS = [(0, 0), (-20, 0), (-40, 0)]
+MOVE_DISTANCE = 20
+UP = 90
+DOWN = 270
+LEFT = 180
+RIGHT = 0
+
 
 class Snake:
     def __init__(self):
         self.snake = []
         self.create_snake()
+        self.head = self.snake[0]
 
     def create_snake(self):
-        position = 0
-        for n in range(3):
-            new_turtle = Turtle()
-            new_turtle.shape("square")
-            new_turtle.color("white")
-            new_turtle.penup()
-            new_turtle.goto(x=position, y=0)
-            position -= 20
-            self.snake.append(new_turtle)
+        for position in STARTING_POSITIONS:
+            self.add_new(position)
 
+    def add_new(self, position):
+        new_turtle = Turtle()
+        new_turtle.shape("square")
+        new_turtle.color("white")
+        new_turtle.penup()
+        new_turtle.goto(position)
 
+        self.snake.append(new_turtle)
+
+    def bigger(self):
+        self.add_new(self.snake[-1].position())
 
     def move(self):
 
@@ -31,18 +39,19 @@ class Snake:
         self.snake[0].fd(20)
 
     def up(self):
-        if self.snake[0].heading()!=DOWN:
-                self.snake[0].setheading(UP)
-    def  down(self):
+        if self.snake[0].heading() != DOWN:
+            self.snake[0].setheading(UP)
+
+    def down(self):
         if self.snake[0].heading() != UP:
-                self.snake[0].setheading(DOWN)
+            self.snake[0].setheading(DOWN)
+
     def left(self):
         if self.snake[0].heading() != RIGHT:
-                self.snake[0].setheading(LEFT)
+            self.snake[0].setheading(LEFT)
+
     def right(self):
         if self.snake[0].heading() != LEFT:
-                self.snake[0].setheading(RIGHT)
-    def reset(self):
-        self.snake[0].reset()
+            self.snake[0].setheading(RIGHT)
 
 
