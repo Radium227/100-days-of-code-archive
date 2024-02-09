@@ -37,11 +37,11 @@ screen.bgcolor("black")
 screen.title("Pong")
 
 screen.listen()
-screen.onkey(r_paddle.go_up, "Up")
-screen.onkey(r_paddle.go_down,"Down" )
+screen.onkeypress(r_paddle.go_up, "Up")
+screen.onkeypress(r_paddle.go_down,"Down" )
 
-screen.onkey(l_paddle.go_up, "w")
-screen.onkey(l_paddle.go_down,"s" )
+screen.onkeypress(l_paddle.go_up, "w")
+screen.onkeypress(l_paddle.go_down,"s" )
 n=0.04
 continue_game=True
 
@@ -55,7 +55,7 @@ while continue_game:
     if ball.ycor() > 280 or ball.ycor() < -280:
         ball.bounce()
 
-    if ball.distance(r_paddle)<55 and ball.xcor() >330 or  ball.distance(l_paddle)<55 and ball.xcor()< -330:
+    if ball.distance(r_paddle)<63 and ball.xcor() >330 or  ball.distance(l_paddle)<63 and ball.xcor()< -330:
         ball.paddle_crash()
         n-=0.003
     if ball.xcor()>385:
